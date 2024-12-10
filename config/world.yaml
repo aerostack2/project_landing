@@ -1,0 +1,30 @@
+world_name: "wavefield"
+origin: 
+    latitude: 40.4405287
+    longitude: -3.6898277
+    altitude: 100.0
+drones:
+  - model_type: "x500"
+    model_name: "drone0"
+    flight_time: 60
+    xyz:
+      - -4.0
+      - 0.0
+      - 3.5
+    # payload:
+    #   - model_type: "gps"
+    #     model_name: "gps"
+    #   - model_type: "gimbal_speed"
+    #     model_name: "gimbal"
+    #     payload:
+    #       model_type: "hd_camera"
+    #       model_name: "camera"
+objects:
+  - model_type: "vesselE"
+    model_name: "barquito"
+    xyz:
+      - 0.0
+      - 0.0
+      - 2.0
+  - model_type: "coast_waves"
+    model_name: "awita"

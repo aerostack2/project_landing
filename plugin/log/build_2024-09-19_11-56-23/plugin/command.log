@@ -1,0 +1,6 @@
+Invoking command in '/home/keikei/project_landing/plugin/build/plugin': /usr/bin/cmake /home/keikei/project_landing/plugin/src -DCMAKE_INSTALL_PREFIX=/home/keikei/project_landing/plugin/install
+Invoked command in '/home/keikei/project_landing/plugin/build/plugin' returned '0': /usr/bin/cmake /home/keikei/project_landing/plugin/src -DCMAKE_INSTALL_PREFIX=/home/keikei/project_landing/plugin/install
+Invoking command in '/home/keikei/project_landing/plugin/build/plugin': /usr/bin/cmake --build /home/keikei/project_landing/plugin/build/plugin
+Invoked command in '/home/keikei/project_landing/plugin/build/plugin' returned '0': /usr/bin/cmake --build /home/keikei/project_landing/plugin/build/plugin
+Invoking command in '/home/keikei/project_landing/plugin/build/plugin': /usr/bin/cmake --install /home/keikei/project_landing/plugin/build/plugin
+Invoked command in '/home/keikei/project_landing/plugin/build/plugin' returned '1': /usr/bin/cmake --install /home/keikei/project_landing/plugin/build/plugin

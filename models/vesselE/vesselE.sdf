@@ -1,0 +1,86 @@
+<?xml version='1.0' ?>
+<sdf version="1.6">
+  <model name="vesselE">
+    <static>false</static>
+    <link name="base_link">
+      <enable_wind>true</enable_wind>
+      <inertial>
+        <mass>1500.0</mass>
+        <inertia>
+          <ixx>3625</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>25000</iyy>
+          <iyz>0.0</iyz>
+          <izz>27625</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <pose>0 0 0 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/Boat05.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/Boat05_Albedo.jpg</albedo_map>
+              <normal_map>materials/textures/Boat05_Normal.png</normal_map>
+              <roughness_map>materials/textures/Boat05_Roughness.jpg</roughness_map>
+              <metalness_map>materials/textures/Boat05_Metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/Boat05.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <plugin
+      filename="libSurface.so"
+      name="maritime::Surface">
+      <link_name>base_link</link_name>
+      <hull_length>8</hull_length>
+      <hull_radius>1</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>4 -2 -0.25</point>
+        <point>-4 -2 -0.25</point>
+        <point>4 2 -0.25</point>
+        <point>-4 2 -0.25</point>
+      </points>
+      <wavefield>
+        <topic>/gazebo/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+
+    <plugin
+      filename="gz-sim-hydrodynamics-system"
+      name="gz::sim::systems::Hydrodynamics">
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>-510.3</xU>
+      <xAbsU>-720.4</xAbsU>
+      <yV>-400.0</yV>
+      <yAbsV>0.0</yAbsV>
+      <zW>-5000.0</zW>
+      <kP>-500.0</kP>
+      <mQ>-500.0</mQ>
+      <nR>-4000.0</nR>
+      <nAbsR>0.0</nAbsR>
+    </plugin>
+
+
+  </model>
+</sdf>
