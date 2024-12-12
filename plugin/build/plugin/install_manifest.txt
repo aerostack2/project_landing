@@ -1,4 +1,0 @@
-/home/keikei/project_landing/plugin/install/lib/libWaves.so
-/home/keikei/project_landing/plugin/install/lib/libPublisherPlugin.so
-/home/keikei/project_landing/plugin/install/lib/libSurface.so
-/home/keikei/project_landing/plugin/install/lib/libWaveVisual.so

@@ -2,17 +2,17 @@
 
 usage() {
     echo "  options:"
-    echo "      -m: multi agent. Default not set"
     echo "      -n: select drones namespace to launch, values are comma separated. By default, it will get all drones from world description file"
     echo "      -s: if set, the simulation will not be launched. Default launch simulation"
     echo "      -g: launch using gnome-terminal instead of tmux. Default not set"
+    echo "      -c: switch control mode to ACRO. Default is SPEED"
 }
 
 # Initialize variables with default values
-swarm="false"
 drones_namespace_comma=""
 launch_simulation="true"
 use_gnome="false"
+acro_control="false"
 
 # Add models to Gazebo sources
 export GZ_SIM_RESOURCE_PATH=$PWD/worlds:$GZ_SIM_RESOURCE_PATH
@@ -21,11 +21,8 @@ export GZ_SIM_SYSTEM_PLUGIN_PATH=$PWD/plugin/install/lib:$GZ_SIM_SYSTEM_PLUGIN_P
 
 
 # Arg parser
-while getopts "mn:sg" opt; do
+while getopts "mn:sgc" opt; do
   case ${opt} in
-    m )
-      swarm="true"
-      ;;
     n )
       drones_namespace_comma="${OPTARG}"
       ;;
@@ -34,6 +31,9 @@ while getopts "mn:sg" opt; do
       ;;
     g )
       use_gnome="true"
+      ;; 
+    c )
+      acro_control="true"
       ;;
     \? )
       echo "Invalid option: -$OPTARG" >&2
@@ -50,11 +50,13 @@ while getopts "mn:sg" opt; do
   esac
 done
 
-# Set simulation world description config file
-if [[ ${swarm} == "true" ]]; then
-  simulation_config="config/world_swarm.yaml"
+# Set simulation world description config file according to control mode
+if [[ ${acro_control} == "true" ]]; then
+  simulation_config="config/world_simple.yaml"
+  config_file="config/config_acro.yaml"
 else
   simulation_config="config/world.yaml"
+  config_file="config/config.yaml"
 fi
 
 # If no drone namespaces are provided, get them from the world description config file
@@ -82,6 +84,8 @@ for namespace in ${drone_namespaces[@]}; do
     drone_namespace=${namespace} \
     simulation_config_file=${simulation_config} \
     base_launch=${base_launch} \
+    acro_control=${acro_control} \
+    config_file=${config_file} \
     ${tmuxinator_end}"
 
   sleep 0.1 # Wait for tmuxinator to finish
