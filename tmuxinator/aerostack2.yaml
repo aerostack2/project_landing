@@ -3,6 +3,8 @@
 drone_namespace        = @settings["drone_namespace"]
 simulation_config_file = @settings["simulation_config_file"]
 base_launch            = @settings["base_launch"] == "true"
+acro_control           = @settings["acro_control"]
+config_file            = @settings["config_file"]
 %>
 name: <%= drone_namespace %>
 attach: false
@@ -19,10 +21,18 @@ windows:
           use_sim_time:=true
           simulation_config_file:=<%= simulation_config_file %>
       <%- end %>
+      <%- if acro_control %>
+        - ros2 launch as2_platform_gazebo platform_gazebo_launch.py
+            namespace:=<%= drone_namespace %>
+            platform_config_file:=<%= config_file %>
+            simulation_config_file:=<%= simulation_config_file %>
+            control_modes_file:=config/control_modes_acro.yaml
+      <%- else %>
         - ros2 launch as2_platform_gazebo platform_gazebo_launch.py
             namespace:=<%= drone_namespace %>
             platform_config_file:=config/config.yaml
             simulation_config_file:=<%= simulation_config_file %>
+      <%- end %>
 
   # Basic Robotics Functions
   - basics_robotics_functions:
@@ -31,13 +41,22 @@ windows:
         # State Estimation
         - ros2 launch as2_state_estimator state_estimator_launch.py
             namespace:=<%= drone_namespace %>
-            config_file:=config/config.yaml
+            config_file:=<%= config_file %>
         # Motion Controller
+      <%- if acro_control %>
         - ros2 launch as2_motion_controller controller_launch.py
             namespace:=<%= drone_namespace %>
-            config_file:=config/config.yaml
+            config_file:=<%= config_file %>
+            plugin_name:=differential_flatness_controller
+            plugin_config_file:=config/differential_flatness_controller.yaml
+      <%- else %>
+        - ros2 launch as2_motion_controller controller_launch.py
+            namespace:=<%= drone_namespace %>
+            config_file:=<%= config_file %>
             plugin_name:=pid_speed_controller
             plugin_config_file:=config/pid_speed_controller.yaml
+      <%- end %>
+
 
   # Behaviors
   - behaviors:
@@ -46,15 +65,15 @@ windows:
         # Motion Behaviors
         - ros2 launch as2_behaviors_motion motion_behaviors_launch.py
             namespace:=<%= drone_namespace %>
-            config_file:=config/config.yaml
+            config_file:=<%= config_file %>
         # Trajectory Generation Behavior
         - ros2 launch as2_behaviors_trajectory_generation generate_polynomial_trajectory_behavior_launch.py
             namespace:=<%= drone_namespace %>
-            config_file:=config/config.yaml
+            config_file:=<%= config_file %>
         # Point Gimbal Behavior
         - ros2 launch as2_behaviors_perception point_gimbal_behavior.launch.py
             namespace:=<%= drone_namespace %>
-            config_file:=config/config.yaml
+            config_file:=<%= config_file %>
 
   # Mission execution
   - mission_execution:
