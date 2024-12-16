@@ -3,7 +3,8 @@
 # Add models to Gazebo sources
 export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:$PWD/gz_resources/worlds
 export GZ_SIM_RESOURCE_PATH=:$GZ_SIM_RESOURCE_PATH:$PWD/gz_resources/models
-export GZ_SIM_SYSTEM_PLUGIN_PATH=$PWD/gz_resources/plugin_ws/install/lib:$GZ_SIM_SYSTEM_PLUGIN_PATH
+export GZ_SIM_SYSTEM_PLUGIN_PATH=$PWD/gz_resources/plugin_ws/install/plugin/lib:$GZ_SIM_SYSTEM_PLUGIN_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/gz_resources/plugin_ws/install/plugin/lib
 
 # Launch aerostack2
 # eval "tmuxinator start -n drone -p tmuxinator/aerostack2.yaml"
