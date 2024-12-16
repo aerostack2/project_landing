@@ -18,6 +18,12 @@ To launch the simulation with sea and buoyant ship run
 ./launch_as2.bash
 ```
 
+To move the ship use the next command
+
+```
+gz topic -t /model/vessel/joint/engine_propeller_joint/cmd_thrust -m gz.msgs.Double -p 'data: 1000.00'
+```
+
 ### ACRO mode
 
 To launch a test world with a drone controlled in ACRO mode run
@@ -25,4 +31,6 @@ To launch a test world with a drone controlled in ACRO mode run
 ```
 ./launch_as2.bash -c
 ```
+
+
 

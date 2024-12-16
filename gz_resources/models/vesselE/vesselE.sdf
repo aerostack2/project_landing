@@ -45,6 +45,152 @@
       </collision>
     </link>
 
+    <link name="engine_link">
+      <pose>-4.0 0.0 -0.2 0 0 1.57079</pose>
+      <inertial>
+        <mass>15.0</mass>
+        <inertia>
+          <ixx>0.4</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.25</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.25</izz>
+        </inertia>
+      </inertial>
+
+    <!-- <visual name="Motor_L_visual">
+      <geometry>
+        <mesh>
+          <uri>meshes/USV.dae</uri>
+          <submesh>
+            <name>Motor_L</name>
+            <center>true</center>
+          </submesh>
+        </mesh>
+      </geometry>
+      <material>
+        <diffuse>1.0 1.0 1.0</diffuse>
+        <specular>1.0 1.0 1.0</specular>
+      </material>
+    </visual> -->
+
+    <!-- self_collide enabled in parent usv model for usv-arm collision
+         so disable mesh collision here otherwise dart's ode collision
+         checker outputs trimesh error msgs -->
+    <!--
+    <collision name="Motor_L_collision">
+      <geometry>
+        <mesh>
+          <uri>meshes/USV.dae</uri>
+          <submesh>
+            <name>Motor_L</name>
+            <center>true</center>
+          </submesh>
+        </mesh>
+      </geometry>
+    </collision>
+    -->
+    </link>
+
+  <link name="propeller_link">
+    <pose>-4.151 0 -0.35 0 0 1.57079</pose>
+
+    <inertial>
+      <mass>0.5</mass>
+      <inertia>
+        <ixx>0.00208</ixx>
+        <ixy>0.0</ixy>
+        <ixz>0.0</ixz>
+        <iyy>0.00333</iyy>
+        <iyz>0.0</iyz>
+        <izz>0.00208</izz>
+      </inertia>
+    </inertial>
+
+    <!-- <visual name= "Prop_L_visual">
+      <geometry>
+        <mesh>
+          <uri>meshes/USV.dae</uri>
+          <submesh>
+            <name>Prop_L</name>
+            <center>true</center>
+          </submesh>
+        </mesh>
+      </geometry>
+      <material>
+        <diffuse>1.0 1.0 1.0</diffuse>
+        <specular>1.0 1.0 1.0</specular>
+      </material>
+    </visual> -->
+
+    <!-- self_collide enabled in parent usv model for usv-arm collision
+         so disable mesh collision here otherwise dart's ode collision
+         checker outputs trimesh error msgs -->
+    <!--
+    <collision name= "Prop_L_collisoin">
+      <geometry>
+        <mesh>
+          <uri>meshes/USV.dae</uri>
+          <submesh>
+            <name>Prop_L</name>
+            <center>true</center>
+          </submesh>
+        </mesh>
+      </geometry>
+    </collision>
+    -->
+    </link>
+
+
+    <joint name="chassis_engine_joint" type="revolute">
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.57079</lower>
+          <upper>1.57079</upper>
+          <effort>10</effort>
+          <velocity>0.2618</velocity>
+        </limit>
+      </axis>
+      <parent>base_link</parent>
+      <child>engine_link</child>
+    </joint>
+
+    <joint name="engine_propeller_joint" type="revolute">
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <friction>0.05</friction>
+          <damping>0.05</damping>
+        </dynamics>
+      </axis>
+      <parent>engine_link</parent>
+      <child>propeller_link</child>
+    </joint>
+
+    <plugin
+      filename="gz-sim-thruster-system"
+      name="gz::sim::systems::Thruster">
+      <joint_name>engine_propeller_joint</joint_name>
+      <thrust_coefficient>0.004422</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+    </plugin>
+ 
+    <plugin
+      filename="gz-sim-joint-position-controller-system"
+      name="gz::sim::systems::JointPositionController">
+      <joint_name>chassis_engine_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <topic>/vessel/thruster/joint/cmd_pos</topic>
+    </plugin>
+
     <plugin
       filename="libSurface.so"
       name="maritime::Surface">
