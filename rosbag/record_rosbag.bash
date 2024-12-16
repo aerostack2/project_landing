@@ -19,21 +19,32 @@ rosbag_cmd="ros2 bag record"
 
 # Uncomment the following lines to record specific topics
 # Add topics and drone namespaces to the rosbag record command
-# for drone_namespace in ${drone_namespaces[@]}; do
-#   rosbag_cmd+=" /${drone_namespace}/platform/info \
-#                 /${drone_namespace}/self_localization/pose \
-#                 /${drone_namespace}/self_localization/twist \
-#                 /${drone_namespace}/actuator_command/twist"
-# done
+for drone_namespace in ${drone_namespaces[@]}; do
+  rosbag_cmd+=" /${drone_namespace}/platform/info \
+                /${drone_namespace}/alert_event \
+                /${drone_namespace}/controller/info \
+                /${drone_namespace}/actuator_command/thrust \
+                /${drone_namespace}/actuator_command/twist \
+                /${drone_namespace}/debug/ref_traj_point \
+                /${drone_namespace}/debug/traj_generated \
+                /${drone_namespace}/motion_reference/modify_waypoint \
+                /${drone_namespace}/motion_reference/trajectory \
+                /${drone_namespace}/self_localization/pose \
+                /${drone_namespace}/self_localization/twist \
+                /${drone_namespace}/sensor_measurements/battery \
+                /${drone_namespace}/sensor_measurements/imu \
+                /${drone_namespace}/sensor_measurements/odom"
+done
+
 # Add remaining topics
-# rosbag_cmd+=" /tf /tf_static"
+rosbag_cmd+=" /rosout /tf /tf_static"
 
 # Comment the following line to record specific topics
 # Record all topics
-rosbag_cmd+=" --all"
+# rosbag_cmd+=" --all"
 
 # Include hidden topics
-rosbag_cmd+="  --include-hidden-topics"
+# rosbag_cmd+="  --include-hidden-topics"
 
 # Execute the rosbag record command
 eval "$rosbag_cmd"

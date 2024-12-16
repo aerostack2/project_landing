@@ -6,7 +6,7 @@ Project for the landing experiments on a moving platform that emulates the motio
 Clone this repository and compile maritime simulation plugins by running
 
 ```
-cd plugin
+cd plugin_ws
 colcon build --merge-install
 ```
 

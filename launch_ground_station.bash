@@ -2,42 +2,28 @@
 
 usage() {
     echo "  options:"
-    echo "      -m: multi agent. Default not set"
-    echo "      -t: launch keyboard teleoperation. Default not launch"
-    echo "      -v: open rviz. Default not launch"
+    echo "      -v: open rviz. Default launch"
+    echo "      -t: use keyboard teleoperation. Default not launch"
     echo "      -r: record rosbag. Default not launch"
-    echo "      -n: drone namespaces, comma separated. Default get from world description config file"
-    echo "      -g: launch using gnome-terminal instead of tmux. Default not set"
 }
 
 # Initialize variables with default values
-swarm="false"
-keyboard_teleop="false"
-rviz="false"
+rviz="true"
+keyboard_teleoperation="false"
 rosbag="false"
-drones_namespace_comma=""
-use_gnome="false"
+use_sim_time="false"
 
 # Parse command line arguments
-while getopts "mtvrn:g" opt; do
+while getopts "vtrs" opt; do
   case ${opt} in
-    m )
-      swarm="true"
+    v )
+      rviz="false"
       ;;
     t )
-      keyboard_teleop="true"
-      ;;
-    v )
-      rviz="true"
+      keyboard_teleoperation="true"
       ;;
     r )
       rosbag="true"
-      ;;
-    n )
-      drones_namespace_comma="${OPTARG}"
-      ;;
-    g )
-      use_gnome="true"
       ;;
     \? )
       echo "Invalid option: -$OPTARG" >&2
@@ -54,39 +40,8 @@ while getopts "mtvrn:g" opt; do
   esac
 done
 
-# Set simulation world description config file
-if [[ ${swarm} == "true" ]]; then
-  simulation_config="config/world_swarm.yaml"
-else
-  simulation_config="config/world.yaml"
-fi
-
-# If no drone namespaces are provided, get them from the world description config file
-if [ -z "$drones_namespace_comma" ]; then
-  drones_namespace_comma=$(python3 utils/get_drones.py -p ${simulation_config} --sep ',')
-fi
-
-# Select between tmux and gnome-terminal
-tmuxinator_mode="start"
-tmuxinator_end="wait"
-tmp_file="/tmp/as2_project_launch_${drone_namespaces[@]}.txt"
-if [[ ${use_gnome} == "true" ]]; then
-  tmuxinator_mode="debug"
-  tmuxinator_end="> ${tmp_file} && python3 utils/tmuxinator_to_genome.py -p ${tmp_file} && wait"
-fi
-
 # Launch aerostack2 ground station
-eval "tmuxinator ${tmuxinator_mode} -n ground_station -p tmuxinator/ground_station.yaml \
-  drone_namespace=${drones_namespace_comma} \
-  keyboard_teleop=${keyboard_teleop} \
+eval "tmuxinator start -n ground_station -p tmuxinator/ground_station.yaml \
+  keyboard_teleoperation=${keyboard_teleoperation} \
   rviz=${rviz} \
-  rosbag=${rosbag} \
-  ${tmuxinator_end}"
-
-# Attach to tmux session
-if [[ ${use_gnome} == "false" ]]; then
-  tmux attach-session -t ground_station
-# If tmp_file exists, remove it
-elif [[ -f ${tmp_file} ]]; then
-  rm ${tmp_file}
-fi
+  rosbag=${rosbag}"

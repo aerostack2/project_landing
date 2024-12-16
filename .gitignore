@@ -1,3 +1,4 @@
-*build*
-*install*
-*log*
+# Colcon output
+build
+log
+install
