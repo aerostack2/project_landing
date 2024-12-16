@@ -25,5 +25,6 @@ objects:
       - 17.0
       - -16.6
       - 2.0
-    object_bridges:
-      - pose
+    tf_broadcaster: true
+    # object_bridges:
+    #   - tf
