@@ -1,29 +1,29 @@
 world_name: "wavefield"
-# origin: 
-#     latitude: 40.4405287
-#     longitude: -3.6898277
-#     altitude: 100.0
-# drones:
-#   - model_type: "x500"
-#     model_name: "drone0"
-#     flight_time: 60
-#     xyz:
-#       - -4.0
-#       - 0.0
-#       - 3.5
-#     enable_velocity_control: false
-#     enable_acro_control: true
-#     payload:
-#       - model_type: "gps"
-#         model_name: "gps"
+origin:
+    latitude: 40.4405287
+    longitude: -3.6898277
+    altitude: 100.0
+drones:
+  - model_type: "x500"
+    model_name: "drone0"
+    flight_time: 60
+    xyz:
+      - 1.0
+      - 0.0
+      - 5.0
+    enable_velocity_control: false
+    enable_acro_control: true
+    payload:
+      - model_type: "gps"
+        model_name: "gps"
 objects:
-  # - model_type: "coast_waves"
-  #   model_name: "water"
+  - model_type: "coast_waves"
+    model_name: "water"
   - model_type: "vesselE"
     model_name: "vessel"
     xyz:
-      - 0.0
-      - 0.0
+      - 17.0
+      - -16.6
       - 2.0
     object_bridges:
       - pose
