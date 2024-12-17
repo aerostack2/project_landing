@@ -8,7 +8,7 @@ keyboard_teleoperation = @settings["keyboard_teleoperation"] == "true"
 name: ground_station
 attach: true
 root: ./
-startup_window: mission_monitoring
+startup_window: mission
 windows:
   <%- if rviz %>
   # RViz
@@ -39,3 +39,10 @@ windows:
             namespace:=drone0
             use_sim_time:=true
   <%- end %>
+
+  # Mission
+  - mission:
+      layout:
+      panes:
+        - ./move_vessel.bash
+        - python3 mission_trajectory.py

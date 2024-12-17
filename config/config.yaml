@@ -29,20 +29,15 @@
   # Behaviors Motion
   TakeoffBehavior:
     ros__parameters:
-      # takeoff_plugin_name: "takeoff_plugin_speed"
-      # takeoff_plugin_name: "takeoff_plugin_position"
       takeoff_plugin_name: "takeoff_plugin_trajectory"
   LandBehavior:
     ros__parameters:
-      # land_plugin_name: "land_plugin_speed"
       land_plugin_name: "land_plugin_trajectory"
   GoToBehavior:
     ros__parameters:
-      # go_to_plugin_name: "go_to_plugin_position"
       go_to_plugin_name: "go_to_plugin_trajectory"
   FollowPathBehavior:
     ros__parameters:
-      # follow_path_plugin_name: "follow_path_plugin_position"
       follow_path_plugin_name: "follow_path_plugin_trajectory"
 
 drone0:
@@ -50,66 +45,25 @@ drone0:
   controller_manager:
     ros__parameters:
       # Differential Flatness Controller
-      mass: 1.03
+      mass: 1.53
       trajectory_control:
         antiwindup_cte: 1.0
         alpha: 0.1
         kp:
-          x: 2.65
-          y: 2.65
-          z: 2.65
+          x: 2.0
+          y: 2.0
+          z: 2.0
         ki:
           x: 0.15
           y: 0.15
           z: 0.15
         kd:
-          x: 1.35
-          y: 1.35
-          z: 1.35
+          x: 1.065
+          y: 1.065
+          z: 1.065
         roll_control:
-          kp: 5.5
+          kp: 1.85
         pitch_control:
-          kp: 5.5
+          kp: 1.85
         yaw_control:
-          kp: 5.5
-      # PID Controller
-      proportional_limitation: true
-      position_control:
-        reset_integral: false
-        antiwindup_cte: 0.5
-        alpha: 0.2
-        kp:
-          x: 1.0
-          y: 1.0
-          z: 1.0
-        kd:
-          x: 0.0
-          y: 0.0
-          z: 0.0
-        ki:
-          x: 0.01
-          y: 0.01
-          z: 0.01
-      trajectory_control:
-        reset_integral: false
-        antiwindup_cte : 1.0
-        alpha: 0.3
-        kp:
-          x: 0.4
-          y: 0.4
-          z: 0.4
-        kd:
-          x: 0.0001
-          y: 0.0001
-          z: 0.0001
-        ki:
-          x: 0.0
-          y: 0.0
-          z: 0.0
-      yaw_control:
-        reset_integral: false
-        antiwindup_cte : 1.0
-        alpha: 0.3
-        kp: 1.0
-        kd: 0.001
-        ki: 0.0
+          kp: 2.85

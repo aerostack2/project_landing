@@ -4,15 +4,15 @@ origin:
     longitude: -3.6898277
     altitude: 100.0
 drones:
-  - model_type: "quadrotor_base"
+  - model_type: "x500"
     model_name: "drone0"
     flight_time: 60
     xyz:
       - 1.0
       - 0.0
       - 5.0
-    enable_velocity_control: false 
-    enable_acro_control: true 
+    enable_velocity_control: true
+    enable_acro_control: false 
     payload:
       - model_type: "gps"
         model_name: "gps"
