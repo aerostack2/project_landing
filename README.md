@@ -6,31 +6,38 @@ Project for the landing experiments on a moving platform that emulates the motio
 Clone this repository and compile maritime simulation plugins by running
 
 ```
-cd plugin_ws
+cd gz_resources/plugin_ws
 colcon build --merge-install
 ```
 
-### Ship simulation
+### Follow reference landing
 
-To launch the simulation with sea and buoyant ship run
+Launch aerostack2 onboard nodes
+
+```
+./launch_as2_follow_reference.bash
+```
+
+Launch ground station
+
+```
+./launch_ground_station.bash
+```
+
+Confirm start mission in the ground station
+
+### Trajectory generation landing
+
+Launch aerostack2 onboard nodes
 
 ```
 ./launch_as2.bash
 ```
 
-To move the ship use the next command
+Launch ground station
 
 ```
-gz topic -t /model/vessel/joint/engine_propeller_joint/cmd_thrust -m gz.msgs.Double -p 'data: 1000.00'
+./launch_ground_station.bash
 ```
 
-### ACRO mode
-
-To launch a test world with a drone controlled in ACRO mode run
-
-```
-./launch_as2.bash -c
-```
-
-
-
+Confirm start mission in the ground station
