@@ -45,4 +45,3 @@ windows:
       layout:
       panes:
         - ./move_vessel.bash
-        - python3 mission_trajectory.py

@@ -43,9 +43,8 @@ from as2_python_api.modules.go_to_module import GoToModule
 from as2_python_api.modules.land_module import LandModule
 from as2_python_api.modules.takeoff_module import TakeoffModule
 from as2_python_api.modules.follow_reference_module import FollowReferenceModule
-from as2_python_api.modules.rtl_module import RTLModule
 from as2_msgs.action import FollowReference
-from as2_msgs.msg import BehaviorStatus, YawMode
+from as2_msgs.msg import BehaviorStatus
 import rclpy
 
 TAKE_OFF_HEIGHT = 3.0  # Height in meters
@@ -62,10 +61,14 @@ AP_SPEED_XY = 2.0  # Max speed in m/s in xy plane
 AP_SPEED_Z = 2.0  # Max speed in m/s in z
 AP_DISTANCE = 0.5  # Distance to goal in meters
 
-# RTL maneuver
-RTL_HEIGHT = 10.0  # Height in meters
-RTL_SPEED = 4.0  # Max speed in m/s
-RTL_LAND_SPEED = 0.5  # Max speed in m/s
+# Landing maneuver
+LD_X = -1.0  # X position in meters relative to the reference
+LD_Y = 0.0  # Y position in meters relative to the reference
+LD_Z = 0.0  # Z position in meters relative to the reference
+LD_SPEED_XY = 1.0  # Max speed in m/s in xy plane
+LD_SPEED_Z = 0.5  # Max speed in m/s in z
+LD_DISTANCE = 0.9  # Distance to goal in meters
+
 
 LAND_SPEED = 0.5  # Max speed in m/s
 
@@ -78,11 +81,10 @@ class DroneInterface(DroneInterfaceBase):
             verbose=verbose,
             spin_rate=200.0)
         self.takeoff = TakeoffModule(drone=self)
-        self.go_to = GoToModule(drone=self)
-        self.follow_path = FollowPathModule(drone=self)
+        # self.go_to = GoToModule(drone=self)
+        # self.follow_path = FollowPathModule(drone=self)
         self.land = LandModule(drone=self)
         self.follow_reference = FollowReferenceModule(drone=self)
-        self.rtl = RTLModule(drone=self)
 
 
 def drone_start(drone_interface: DroneInterface) -> bool:
@@ -122,7 +124,7 @@ def drone_run(drone_interface: DroneInterface) -> bool:
     print('Run mission')
 
     # Follow reference
-    print('Following reference')
+    print('Follow reference')
     # drone_interface.follow_reference_with_reference_facing(
     drone_interface.follow_reference.follow_reference(
         x=AP_X, y=AP_Y, z=AP_Z, frame_id=FRAME_ID,
@@ -131,19 +133,26 @@ def drone_run(drone_interface: DroneInterface) -> bool:
 
     # Wait for the drone to reach the goal
     while drone_interface.follow_reference.status == BehaviorStatus.RUNNING:
-        sleep(SLEEP_TIME)
+        fb: FollowReference.Feedback = drone_interface.follow_reference.feedback
+        print(f'Feedback: {fb}')
+        print(f'Actual distance to goal: {fb.actual_distance_to_goal}')
+        if fb.actual_distance_to_goal < AP_DISTANCE:
+            break
 
-    # RTL
-    print('RTL')
-    yaw_mode = YawMode()
-    yaw_mode.mode = YawMode.KEEP_YAW
-    success = drone_interface.rtl(
-        height=RTL_HEIGHT, speed=RTL_SPEED, land_speed=RTL_LAND_SPEED)
-    # success = drone_interface.rtl(
-    #     height=RTL_HEIGHT, speed=RTL_SPEED, land_speed=RTL_LAND_SPEED,
-    #     yaw_mode=yaw_mode, yaw_angle=0.0)
+    # Land
+    print('Land')
+    drone_interface.follow_reference.follow_reference(
+        x=LD_X, y=LD_Y, z=LD_Z, frame_id=FRAME_ID,
+        speed_x=LD_SPEED_XY, speed_y=LD_SPEED_XY, speed_z=LD_SPEED_Z)
+    sleep(SLEEP_TIME)
 
-    return success
+    # Wait for the drone to reach the goal
+    while drone_interface.follow_reference.status == BehaviorStatus.RUNNING:
+        fb: FollowReference.Feedback = drone_interface.follow_reference.feedback
+        print(f'Actual distance to goal: {fb.actual_distance_to_goal}')
+        if fb.actual_distance_to_goal < LD_DISTANCE:
+            return True
+    return False
 
 def drone_end(drone_interface: DroneInterface) -> bool:
     """

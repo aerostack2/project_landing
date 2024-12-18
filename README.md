@@ -24,7 +24,11 @@ Launch ground station
 ./launch_ground_station.bash
 ```
 
-Confirm start mission in the ground station
+Launch mission in the aerostack2
+
+```
+python3 mission_follow_ref.py
+```
 
 ### Trajectory generation landing
 
@@ -40,4 +44,31 @@ Launch ground station
 ./launch_ground_station.bash
 ```
 
-Confirm start mission in the ground station
+Confirm start mission in the aerostack2
+
+### Follow vessel and RTL
+
+Launch aerostack2 onboard nodes
+
+```
+./launch_as2_follow_reference.bash
+```
+
+Launch ground station
+
+```
+./launch_ground_station.bash
+```
+
+Launch mission in the aerostack2
+
+```
+python3 mission_following
+```
+
+Stop following the vessel and RTL
+
+```
+./follow_reference_stop.bash
+```
+

@@ -50,3 +50,4 @@ windows:
       panes:
         - ros2 run as2_alphanumeric_viewer as2_alphanumeric_viewer_node
             --ros-args -r  __ns:=/drone0
+        - echo "Run the mission python3 mission_follow_ref.py or python3 mission_following.py"
