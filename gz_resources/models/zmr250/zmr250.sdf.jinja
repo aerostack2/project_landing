@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<sdf version="1.6">
+<sdf version="1.8">
     <model name='{{ namespace }}'>
         <!-- Platform base model-->
         <include merge="true">
@@ -28,8 +28,8 @@
             <jointName>rotor_0_joint</jointName>
             <linkName>rotor_0</linkName>
             <turningDirection>ccw</turningDirection>
-            <timeConstantUp>0.0125</timeConstantUp>
-            <timeConstantDown>0.025</timeConstantDown>
+            <timeConstantUp>0.1504</timeConstantUp>
+            <timeConstantDown>0.111905</timeConstantDown>
             <maxRotVelocity>549.779</maxRotVelocity>
             <motorConstant>1.51275e-04</motorConstant>
             <momentConstant>0.1103</momentConstant>
@@ -38,7 +38,7 @@
             <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
             <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
             <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
-            <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+            <rotorVelocitySlowdownSim>1</rotorVelocitySlowdownSim>
             <motorType>velocity</motorType>
         </plugin>
         <plugin
@@ -48,8 +48,8 @@
             <jointName>rotor_1_joint</jointName>
             <linkName>rotor_1</linkName>
             <turningDirection>ccw</turningDirection>
-            <timeConstantUp>0.0125</timeConstantUp>
-            <timeConstantDown>0.025</timeConstantDown>
+            <timeConstantUp>0.1504</timeConstantUp>
+            <timeConstantDown>0.111905</timeConstantDown>
             <maxRotVelocity>549.779</maxRotVelocity>
             <motorConstant>1.51275e-04</motorConstant>
             <momentConstant>0.1103</momentConstant>
@@ -58,7 +58,7 @@
             <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
             <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
             <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
-            <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+            <rotorVelocitySlowdownSim>1</rotorVelocitySlowdownSim>
             <motorType>velocity</motorType>
         </plugin>
         <plugin
@@ -68,8 +68,8 @@
             <jointName>rotor_2_joint</jointName>
             <linkName>rotor_2</linkName>
             <turningDirection>cw</turningDirection>
-            <timeConstantUp>0.0125</timeConstantUp>
-            <timeConstantDown>0.025</timeConstantDown>
+            <timeConstantUp>0.1504</timeConstantUp>
+            <timeConstantDown>0.111905</timeConstantDown>
             <maxRotVelocity>549.779</maxRotVelocity>
             <motorConstant>1.51275e-04</motorConstant>
             <momentConstant>0.1103</momentConstant>
@@ -78,7 +78,7 @@
             <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
             <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
             <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
-            <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+            <rotorVelocitySlowdownSim>1</rotorVelocitySlowdownSim>
             <motorType>velocity</motorType>
         </plugin>
         <plugin
@@ -88,8 +88,8 @@
             <jointName>rotor_3_joint</jointName>
             <linkName>rotor_3</linkName>
             <turningDirection>cw</turningDirection>
-            <timeConstantUp>0.0125</timeConstantUp>
-            <timeConstantDown>0.025</timeConstantDown>
+            <timeConstantUp>0.1504</timeConstantUp>
+            <timeConstantDown>0.111905</timeConstantDown>
             <maxRotVelocity>549.779</maxRotVelocity>
             <motorConstant>1.51275e-04</motorConstant>
             <momentConstant>0.1103</momentConstant>
@@ -98,34 +98,31 @@
             <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
             <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
             <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
-            <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+            <rotorVelocitySlowdownSim>1</rotorVelocitySlowdownSim>
             <motorType>velocity</motorType>
         </plugin>
 
-        
     {% if velocity_controller -%}
       <plugin
-        filename="gz-sim-multicopter-control-system"
+        filename="ignition-gazebo-multicopter-control-system"
         name="gz::sim::systems::MulticopterVelocityControl">
         <robotNamespace>model/{{ namespace }}</robotNamespace>
         <commandSubTopic>cmd_vel</commandSubTopic>
         <enableSubTopic>velocity_controller/enable</enableSubTopic>
         <comLinkName>base_link</comLinkName>
-        <velocityGain>2.7 2.7 2.7</velocityGain>
-        <attitudeGain>2 3 0.15</attitudeGain>
-        <angularRateGain>0.4 0.52 0.18</angularRateGain>
-        <maximumLinearAcceleration>1 1 2</maximumLinearAcceleration>
+        <velocityGain>1.3 1.3 1.5</velocityGain>
+        <attitudeGain>2.0 2.0 0.9</attitudeGain>
+        <angularRateGain>0.5 0.5 0.09</angularRateGain>
+        <maximumLinearAcceleration>2 2 2</maximumLinearAcceleration>
         <maximumLinearVelocity>5 5 5</maximumLinearVelocity>
         <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
-        <linearVelocityNoiseMean>0 0 0.05</linearVelocityNoiseMean>
-        <linearVelocityNoiseStdDev>0.1105 0.1261 0.00947</linearVelocityNoiseStdDev>
+        <linearVelocityNoiseMean>0.0 0.0 0.0</linearVelocityNoiseMean>
+        <linearVelocityNoiseStdDev>0.0 0.0 0.0</linearVelocityNoiseStdDev>
         <angularVelocityNoiseMean>0 0 0</angularVelocityNoiseMean>
-        <angularVelocityNoiseStdDev>0.004 0.004 0.004</angularVelocityNoiseStdDev>
-        
+        <angularVelocityNoiseStdDev>0.0 0.0 0.0</angularVelocityNoiseStdDev>
       {% endif -%}
 
       {% if acro_controller -%}
-
       <plugin 
         filename="libMulticopterINDIControl.so"
         name="gz::sim::systems::MulticopterINDIControl">
@@ -133,41 +130,40 @@
         <commandSubTopic>acro</commandSubTopic>
         <enableSubTopic>model/{{ namespace }}/acro_controller/enable</enableSubTopic>
         <comLinkName>base_link</comLinkName>
-        <Kp_gains>12.0 12.0 8.0</Kp_gains>
+        <Kp_gains>10.0 10.0 8.0</Kp_gains>
         <Ki_gains>0.0 0.0 0.0</Ki_gains>
-        <Kd_gains>2.15 2.15 0.0</Kd_gains>
+        <Kd_gains>1.65 1.65 0.0</Kd_gains>
         <alpha>0.6 0.6 0.6</alpha>
         <antiwindup_cte>1.0 1.0 1.0</antiwindup_cte>
         <reset_integral_flag>1</reset_integral_flag>
         <proportional_saturation_flag>1</proportional_saturation_flag>
         <upper_output_saturation>0.0 0.0 0.0</upper_output_saturation>
         <lower_output_saturation>0.0 0.0 0.0</lower_output_saturation>
-
       {% endif -%}
 
         <rotorConfiguration>
           <rotor>
             <jointName>rotor_0_joint</jointName>
-            <forceConstant>8.54858e-06</forceConstant>
-            <momentConstant>0.016</momentConstant>
+            <forceConstant>1.51275e-04</forceConstant>
+            <momentConstant>0.1103</momentConstant>
             <direction>1</direction>
           </rotor>
           <rotor>
             <jointName>rotor_1_joint</jointName>
-            <forceConstant>8.54858e-06</forceConstant>
-            <momentConstant>0.016</momentConstant>
+            <forceConstant>1.51275e-04</forceConstant>
+            <momentConstant>0.1103</momentConstant>
             <direction>1</direction>
           </rotor>
           <rotor>
             <jointName>rotor_2_joint</jointName>
-            <forceConstant>8.54858e-06</forceConstant>
-            <momentConstant>0.016</momentConstant>
+            <forceConstant>1.51275e-04</forceConstant>
+            <momentConstant>0.1103</momentConstant>
             <direction>-1</direction>
           </rotor>
           <rotor>
             <jointName>rotor_3_joint</jointName>
-            <forceConstant>8.54858e-06</forceConstant>
-            <momentConstant>0.016</momentConstant>
+            <forceConstant>1.51275e-04</forceConstant>
+            <momentConstant>0.1103</momentConstant>
             <direction>-1</direction>
           </rotor>
         </rotorConfiguration>
@@ -204,28 +200,28 @@
             {% if sensor.model == 'gimbal_position' -%}
 
                 {# Gimbal position - include or basic render  #}
-                {% include 'gimbal/position_gimbal.sdf.jinja' with context %}
+                {% include 'models/gimbal/position_gimbal.sdf.jinja' with context %}
 
             {% elif sensor.model == 'gimbal_speed' -%}
 
                 {# Gimbal speed - include or basic render  #}
-                {% include 'gimbal/speed_gimbal.sdf.jinja' with context %}
+                {% include 'models/gimbal/speed_gimbal.sdf.jinja' with context %}
 
             {% elif sensor.model == 'hd_camera' and not sensor.gimbaled -%}
 
-                {% include 'hd_camera/hd_camera.sdf.jinja' with context %}
+                {% include 'models/hd_camera/hd_camera.sdf.jinja' with context %}
 
             {% elif sensor.model == 'vga_camera' and not sensor.gimbaled -%}
 
-                {% include 'vga_camera/vga_camera.sdf.jinja' with context %}
+                {% include 'models/vga_camera/vga_camera.sdf.jinja' with context %}
 
             {% elif sensor.model == 'semantic_camera' and not sensor.gimbaled -%}
 
-                {% include 'semantic_camera/semantic_camera.sdf.jinja' with context %}
+                {% include 'models/semantic_camera/semantic_camera.sdf.jinja' with context %}
 
             {% elif sensor.model == 'rgbd_camera' and not sensor.gimbaled -%}
 
-                {% include 'rgbd_camera/rgbd_camera.sdf.jinja' with context %}
+                {% include 'models/rgbd_camera/rgbd_camera.sdf.jinja' with context %}
 
             {% elif sensor.gimbaled -%}
 
