@@ -15,11 +15,10 @@
           <izz>0.00459895</izz>
         </inertia>
       </inertial>
-      <collision name='base_link_inertia_collision'>
       <visual name="zmr250_visual">
         <geometry>
           <mesh>
-            <uri>meshes/model.dae</uri>
+            <uri>model://zmr250/meshes/model.dae</uri>
             <submesh>
               <name>ZMR250_Assembly</name>
             </submesh>
@@ -38,7 +37,7 @@
       <collision name="zmr250_collision">
         <geometry>
           <mesh>
-            <uri>meshes/model.dae</uri>
+            <uri>model://zmr250/meshes/model.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -161,7 +160,7 @@
             <izz>4.26041e-05</izz>
         </inertia>
         </inertial>
-        <collision name='rotor_0_collision'>
+        <!-- <collision name='rotor_0_collision'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <cylinder>
@@ -177,7 +176,7 @@
             <ode/>
             </friction>
         </surface>
-        </collision>
+        </collision> -->
         <visual name='rotor_0_visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
@@ -227,12 +226,12 @@
             <izz>4.26041e-05</izz>
         </inertia>
         </inertial>
-        <collision name='rotor_1_collision'>
+        <!-- <collision name='rotor_1_collision'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <cylinder>
             <length>0.005</length>
-            <radius>0.1</radius>
+            <radius>0.06</radius>
             </cylinder>
         </geometry>
         <surface>
@@ -243,12 +242,12 @@
             <ode/>
             </friction>
         </surface>
-        </collision>
+        </collision> -->
         <visual name='rotor_1_visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <mesh>
-            <scale>0.1 0.1 0.1</scale>
+            <scale>0.06 0.06 0.06</scale>
             <uri>model://quadrotor_base/meshes/propeller_ccw.dae</uri>
             </mesh>
         </geometry>
@@ -293,12 +292,12 @@
             <izz>4.26041e-05</izz>
         </inertia>
         </inertial>
-        <collision name='rotor_2_collision'>
+        <!-- <collision name='rotor_2_collision'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <cylinder>
             <length>0.005</length>
-            <radius>0.1</radius>
+            <radius>0.06</radius>
             </cylinder>
         </geometry>
         <surface>
@@ -309,12 +308,12 @@
             <ode/>
             </friction>
         </surface>
-        </collision>
+        </collision> -->
         <visual name='rotor_2_visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <mesh>
-            <scale>0.1 0.1 0.1</scale>
+            <scale>0.06 0.06 0.06</scale>
             <uri>model://quadrotor_base/meshes/propeller_cw.dae</uri>
             </mesh>
         </geometry>
@@ -359,12 +358,12 @@
             <izz>4.26041e-05</izz>
         </inertia>
         </inertial>
-        <collision name='rotor_3_collision'>
+        <!-- <collision name='rotor_3_collision'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <cylinder>
             <length>0.005</length>
-            <radius>0.1</radius>
+            <radius>0.06</radius>
             </cylinder>
         </geometry>
         <surface>
@@ -375,12 +374,12 @@
             <ode/>
             </friction>
         </surface>
-        </collision>
+        </collision> -->
         <visual name='rotor_3_visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
             <mesh>
-            <scale>0.1 0.1 0.1</scale>
+            <scale>0.06 0.06 0.06</scale>
             <uri>model://quadrotor_base/meshes/propeller_cw.dae</uri>
             </mesh>
         </geometry>
