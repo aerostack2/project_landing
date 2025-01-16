@@ -57,8 +57,10 @@ windows:
   - hardware:
       layout:
       panes:
-        - ros2 launch as2_arducam_camera_interface as2_arducam_camera_interface_launch.py
+        - ros2 launch as2_usb_camera_interface as2_usb_camera_interface_launch.py
             namespace:=drone0
+            config_file:=config/config.yaml
+            camera_calibration_file:=config/camera_calibration.yaml
 
   <%- if rosbag %>
   # ROSbag recording
