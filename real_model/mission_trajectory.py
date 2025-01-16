@@ -51,7 +51,7 @@ SLEEP_TIME = 0.5  # Sleep time between behaviors in seconds
 
 # Fly params
 FRAME_ID = 'drone0/odom'  # Frame ID for the path
-SPEED = 0.5  # Max speed in m/s
+SPEED = 1.0  # Max speed in m/s
 HEIGHT = 1.5  # Height in meters
 INGORE_YAW = True  # If true, keep the current yaw
 
