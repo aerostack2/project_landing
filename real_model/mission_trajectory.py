@@ -66,7 +66,7 @@ PATH = [
 ]
 
 # Land params
-LAND_SPEED = 0.5  # Max speed in m/s
+LAND_SPEED = 0.7  # Max speed in m/s
 
 
 def confirm(msg: str = 'Continue') -> bool:
