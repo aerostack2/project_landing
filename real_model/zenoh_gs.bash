@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default value for the input parameter
-DEFAULT_HOST="cvar-nx.local"
+DEFAULT_HOST="cvar-a2rl-1.local"
 
 # Use the input parameter if provided, otherwise fall back to the default
 HOST=${1:-$DEFAULT_HOST}
