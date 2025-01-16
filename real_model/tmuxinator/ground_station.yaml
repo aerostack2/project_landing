@@ -1,0 +1,41 @@
+<%
+# Input parameters
+rviz         = @settings["rviz"] == "true"
+rosbag       = @settings["rosbag"] == "true"
+keyboard_teleoperation = @settings["keyboard_teleoperation"] == "true"
+%>
+
+name: ground_station
+attach: true
+root: ./
+startup_window: mission
+windows:
+  <%- if rviz %>
+  # RViz
+  - rviz:
+      layout:
+      panes:
+        - ros2 launch as2_visualization swarm_viz.launch.py
+            namespace_list:=drone0
+            rviz_config:=config/rviz2_config.rviz
+            drone_model:=quadrotor_base
+            use_sim_time:=false
+  <%- end %>
+
+  <%- if rosbag %>
+  # ROSbag recording
+  - rosbag:
+      layout:
+      panes:
+        - ./rosbag/record_rosbag.bash drone0
+  <%- end %>
+
+  <%- if keyboard_teleoperation %>
+  # Keyboard teleoperation
+  - keyboard_teleop:
+      layout:
+      panes:
+        - ros2 launch as2_keyboard_teleoperation as2_keyboard_teleoperation_launch.py
+            namespace:=drone0
+            use_sim_time:=false
+  <%- end %>

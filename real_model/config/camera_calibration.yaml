@@ -1,0 +1,22 @@
+/**:
+  ros__parameters:
+    image_width: 1280
+    image_height: 720
+    camera_name: camera
+    camera_matrix:
+      rows: 3
+      cols: 3
+      data: [565.81025122, 0.0, 622.49327277, 0.0, 583.87503009,  510.09288697, 0.0, 0.0, 1.0]
+    distortion_model: plumb_bob
+    distortion_coefficients:
+      rows: 1
+      cols: 5
+      data: [-0.2464095, 0.06922123, -0.01077599, 0.00028745, -0.00938512]
+    rectification_matrix:
+      rows: 3
+      cols: 3
+      data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+    projection_matrix:
+      rows: 3
+      cols: 4
+      data: [565.81025122, 0.0, 622.49327277, 0.0, 0.0, 503.36754018317595, 347.39475856065667, 0.0, 0.0, 0.0, 1.0, 0.0]

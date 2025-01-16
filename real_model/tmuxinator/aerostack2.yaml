@@ -1,0 +1,69 @@
+<%
+# Input parameters
+rosbag = @settings["rosbag"] == "true"
+%>
+
+name: drone0
+attach: true
+root: ./
+startup_window: platform
+windows:
+  # Zenoh
+  - zenoh:
+      layout: tiled
+      panes:
+        # Zenoh
+        - zenoh-bridge-ros2dds -c zenoh_config_drone.json5
+
+  # Platform
+  - platform:
+      layout: tiled
+      panes:
+        # Mission monitoring
+        - ros2 run as2_alphanumeric_viewer as2_alphanumeric_viewer_node
+            --ros-args -r  __ns:=/drone0
+        # Platform
+        - ros2 launch as2_platform_betaflight as2_platform_betaflight_launch.py
+            namespace:=drone0
+            platform_config_file:=configs/config.yaml
+
+  # Basic Robotics Functions
+  - BRF:
+      layout: tiled
+      panes:
+        # State Estimation
+        - ros2 launch as2_state_estimator mocap_pose_state_estimator.launch.py
+              namespace:=drone0
+              config_file:=config/config.yaml
+        # Motion Controller with Differential Flatness
+        - ros2 launch as2_motion_controller controller_launch.py
+            namespace:=drone0
+            config_file:=config/config.yaml
+
+  # Behaviors
+  - behaviors:
+      layout:
+      panes:
+        # Motion Behaviors
+        - ros2 launch as2_behaviors_motion motion_behaviors_launch.py
+            namespace:=drone0
+            config_file:=config/config.yaml
+        # Trajectory Generation Behavior
+        - ros2 launch as2_behaviors_trajectory_generation generate_polynomial_trajectory_behavior_launch.py
+            namespace:=drone0
+            config_file:=config/config.yaml
+
+  # Mission monitoring
+  - hardware:
+      layout:
+      panes:
+        - ros2 launch as2_arducam_camera_interface as2_arducam_camera_interface_launch.py
+            namespace:=drone0
+
+  <%- if rosbag %>
+  # ROSbag recording
+  - rosbag:
+      layout:
+      panes:
+        - ./rosbag/record_rosbag.bash drone0
+  <%- end %>
