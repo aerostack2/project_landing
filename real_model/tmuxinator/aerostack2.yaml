@@ -25,7 +25,7 @@ windows:
         # Platform
         - ros2 launch as2_platform_betaflight as2_platform_betaflight_launch.py
             namespace:=drone0
-            platform_config_file:=configs/config.yaml
+            platform_config_file:=config/config.yaml
 
   # Basic Robotics Functions
   - BRF:
