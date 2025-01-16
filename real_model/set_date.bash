@@ -1,0 +1,1 @@
+ssh cvar@cvar-a2rl-1.local "sudo date -s '$(date)'"
