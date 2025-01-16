@@ -102,7 +102,7 @@
     ros__parameters:
       # Package configuration
       arducam: true
-      device: 0 # Id of camera device, int
+      device: "0" # Id of camera device
       # device: "/dev/video0" # Path to the camera device
       framerate: 60.0 # Frame rate of the camera (fps)
       encoding: "bgr8" # Image encoding
