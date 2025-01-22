@@ -36,6 +36,12 @@
   FollowPathBehavior:
     ros__parameters:
       follow_path_plugin_name: "follow_path_plugin_trajectory"
+  TrajectoryGeneratorBehavior:
+    ros__parameters:
+      tf_timeout_threshold: 0.05
+      run_frequency: 100.0 # Frequency of the behavior
+      sampling_n: 1 # Number of sampling of the trajectory
+      sampling_dt: 0.01 # Time between each sampling
 
 drone0:
   # Motion Controller
@@ -43,43 +49,45 @@ drone0:
     ros__parameters:
       # Differential Flatness Controller
       mass: 0.853
+      # trajectory_control:
+      #   antiwindup_cte: 1.0
+      #   alpha: 0.1
+      #   kp:
+      #     x: 2.35
+      #     y: 2.35
+      #     z: 2.35
+      #   ki:
+      #     x: 0.0
+      #     y: 0.0
+      #     z: 0.0
+      #   kd:
+      #     x: 2.65
+      #     y: 2.65
+      #     z: 2.65
+      #   roll_control:
+      #     kp: 3.35
+      #   pitch_control:
+      #     kp: 3.35
+      #   yaw_control:
+      #     kp: 3.35
       trajectory_control:
         antiwindup_cte: 1.0
         alpha: 0.1
         kp:
-          x: 2.35
-          y: 2.35
-          z: 2.35
+          x: 5.0
+          y: 5.0
+          z: 5.0
         ki:
-          x: 0.0
-          y: 0.0
-          z: 0.0
+          x: 0.01
+          y: 0.01
+          z: 0.05
         kd:
-          x: 2.65
-          y: 2.65
-          z: 2.65
+          x: 1.6
+          y: 1.6
+          z: 2.1
         roll_control:
-          kp: 3.35
+          kp: 6.0
         pitch_control:
-          kp: 3.35
+          kp: 6.0
         yaw_control:
-          kp: 3.35
-
-        # kp:
-        #   x: 3.15
-        #   y: 3.15
-        #   z: 3.15
-        # ki:
-        #   x: 0.75
-        #   y: 0.75
-        #   z: 0.75
-        # kd:
-        #   x: 1.985
-        #   y: 1.985
-        #   z: 1.985
-        # roll_control:
-        #   kp: 3.85
-        # pitch_control:
-        #   kp: 3.85
-        # yaw_control:
-        #   kp: 3.85
+          kp: 1.3

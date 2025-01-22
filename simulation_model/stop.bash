@@ -24,6 +24,7 @@ ${script_dir}/utils/stop_tmux_sessions.bash "${tmux_session_list[@]}"
 pkill -9 -f 'gz' < /dev/null
 pkill -9 -f "gazebo" < /dev/null
 pkill -9 -f "ruby" < /dev/null
+# pkill -9 -f "rb" < /dev/null
 
 # Kill gazebo bridges
 pkill -9 -f "ros_gz_bridge"

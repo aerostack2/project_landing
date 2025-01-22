@@ -40,8 +40,15 @@ while getopts "vtrs" opt; do
   esac
 done
 
-# Launch aerostack2 ground station
-eval "tmuxinator start -n ground_station -p tmuxinator/ground_station.yaml \
-  keyboard_teleoperation=${keyboard_teleoperation} \
-  rviz=${rviz} \
-  rosbag=${rosbag}"
+# Add models to Gazebo sources
+# export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:$PWD/gz_resources/worlds
+export GZ_SIM_RESOURCE_PATH=:$GZ_SIM_RESOURCE_PATH:$PWD/gz_resources/models
+export AS2_EXTRA_DRONE_MODELS=$AS2_EXTRA_DRONE_MODELS:zmr250
+
+ros2 launch as2_visualization swarm_viz.launch.py namespace_list:=drone0 rviz_config:=config/rviz2_config.rviz drone_model:=zmr250 use_sim_time:=true
+
+# # Launch aerostack2 ground station
+# eval "tmuxinator start -n ground_station -p tmuxinator/ground_station.yaml \
+#   keyboard_teleoperation=${keyboard_teleoperation} \
+#   rviz=${rviz} \
+#   rosbag=${rosbag}"

@@ -5,9 +5,8 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Grid1
+        - /TF1
         - /TF1/Frames1
-        - /Marker1
       Splitter Ratio: 0.5382353067398071
     Tree Height: 824
   - Class: rviz_common/Selection
@@ -104,7 +103,7 @@ Visualization Manager:
       Enabled: true
       Name: ReferencePose
       Namespaces:
-        am: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -126,110 +125,6 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /viz/drone0/last_poses
       Value: true
-    - Alpha: 1
-      Class: rviz_default_plugins/RobotModel
-      Collision Enabled: false
-      Description File: ""
-      Description Source: Topic
-      Description Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /drone1/robot_description
-      Enabled: true
-      Links:
-        All Links Enabled: true
-        Expand Joint Details: false
-        Expand Link Details: false
-        Expand Tree: false
-        Link Tree Style: Links in Alphabetic Order
-      Mass Properties:
-        Inertia: false
-        Mass: false
-      Name: RobotModel
-      TF Prefix: drone1
-      Update Interval: 0
-      Value: true
-      Visual Enabled: true
-    - Class: rviz_default_plugins/Marker
-      Enabled: true
-      Name: ReferencePose
-      Namespaces:
-        {}
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /viz/drone1/reference_pose
-      Value: true
-    - Class: rviz_default_plugins/Marker
-      Enabled: true
-      Name: HistoryPoses
-      Namespaces:
-        {}
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /viz/drone1/last_poses
-      Value: true
-    - Alpha: 1
-      Class: rviz_default_plugins/RobotModel
-      Collision Enabled: false
-      Description File: ""
-      Description Source: Topic
-      Description Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /drone2/robot_description
-      Enabled: true
-      Links:
-        All Links Enabled: true
-        Expand Joint Details: false
-        Expand Link Details: false
-        Expand Tree: false
-        Link Tree Style: Links in Alphabetic Order
-      Mass Properties:
-        Inertia: false
-        Mass: false
-      Name: RobotModel
-      TF Prefix: drone2
-      Update Interval: 0
-      Value: true
-      Visual Enabled: true
-    - Class: rviz_default_plugins/Marker
-      Enabled: true
-      Name: ReferencePose
-      Namespaces:
-        {}
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /viz/drone2/reference_pose
-      Value: true
-    - Class: rviz_default_plugins/Marker
-      Enabled: true
-      Name: HistoryPoses
-      Namespaces:
-        {}
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /viz/drone2/last_poses
-      Value: true
     - Class: rviz_default_plugins/TF
       Enabled: true
       Frame Timeout: 15
@@ -240,13 +135,7 @@ Visualization Manager:
         drone0/base_footprint:
           Value: false
         drone0/base_link:
-          Value: false
-        drone0/gps:
-          Value: false
-        drone0/gps/gps:
-          Value: false
-        drone0/gps/gps/navsat:
-          Value: false
+          Value: true
         drone0/imu:
           Value: false
         drone0/imu/internal:
@@ -266,8 +155,8 @@ Visualization Manager:
         drone0/rotor_3:
           Value: false
         earth:
-          Value: false
-        vessel:
+          Value: true
+        land_plane:
           Value: true
       Marker Scale: 3
       Name: TF
@@ -281,10 +170,6 @@ Visualization Manager:
               drone0:
                 drone0/base_link:
                   {}
-                drone0/gps:
-                  drone0/gps/gps:
-                    drone0/gps/gps/navsat:
-                      {}
                 drone0/imu:
                   drone0/imu/internal:
                     drone0/imu/internal/imu:
@@ -299,7 +184,7 @@ Visualization Manager:
                   {}
               drone0/base_footprint:
                 {}
-          vessel:
+          land_plane:
             {}
       Update Interval: 0
       Value: true
@@ -344,23 +229,10 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /drone0/debug/ref_traj_point
       Value: true
-    - Class: rviz_default_plugins/Marker
-      Enabled: true
-      Name: Marker
-      Namespaces:
-        {}
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /viz/drone1/queue_poses
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 119; 118; 123
-    Fixed Frame: drone0/base_link
+    Fixed Frame: earth
     Frame Rate: 30
   Name: root
   Tools:
@@ -403,25 +275,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 14.95339584350586
+      Distance: 11.438532829284668
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.07418504357337952
-        Y: 1.5459790229797363
-        Z: 1.7002761363983154
+        X: 0.31809335947036743
+        Y: -0.11800091713666916
+        Z: 2.421910524368286
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.07479749619960785
+      Pitch: 0.5447971820831299
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.1416590213775635
+      Yaw: 4.6166887283325195
     Saved: ~
 Window Geometry:
   Displays:

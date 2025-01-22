@@ -8,7 +8,7 @@ keyboard_teleoperation = @settings["keyboard_teleoperation"] == "true"
 name: ground_station
 attach: true
 root: ./
-startup_window: mission
+# startup_window: mission
 windows:
   <%- if rviz %>
   # RViz
@@ -18,7 +18,7 @@ windows:
         - ros2 launch as2_visualization swarm_viz.launch.py
             namespace_list:=drone0
             rviz_config:=config/rviz2_config.rviz
-            drone_model:=quadrotor_base
+            drone_model:=zmr250
             use_sim_time:=true
   <%- end %>
 
@@ -40,8 +40,8 @@ windows:
             use_sim_time:=true
   <%- end %>
 
-  # Mission
-  - mission:
-      layout:
-      panes:
-        - ./move_vessel.bash
+  # # Mission
+  # - mission:
+  #     layout:
+  #     panes:
+  #       - ./move_vessel.bash

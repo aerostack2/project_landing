@@ -22,7 +22,7 @@ for session in "${tmux_session_list[@]}"; do
     for window in "${windows[@]}"; do
       # Send Ctrl+C to the window
       tmux send-keys -t "$session:$window" C-c
-      sleep 0.1 # Add a small delay to allow the signal to be processed
+      sleep 0.2 # Add a small delay to allow the signal to be processed
     done
   fi
 done
