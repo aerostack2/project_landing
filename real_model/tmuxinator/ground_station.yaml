@@ -47,3 +47,9 @@ windows:
             namespace:=mocap
             config_file:=config/mocap4ros.yaml
         - sleep 1; ros2 lifecycle set /mocap/mocap4r2_optitrack_driver_node activate
+        - ros2 launch as2_external_object_to_tf as2_external_object_to_tf_launch.py
+            namespace:=drone0
+            use_sim_time:=false
+            mocap_topic:=/rigid_bodies
+            config_file:=config/ext_to_tf_config.yaml
+

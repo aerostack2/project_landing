@@ -51,9 +51,10 @@ SLEEP_TIME = 0.5  # Sleep time between behaviors in seconds
 
 # Fly params
 FRAME_ID = 'drone0/odom'  # Frame ID for the path
-SPEED = 0.5  # Max speed in m/s
+SPEED = 1.0  # Max speed in m/s
 HEIGHT = 1.5  # Height in meters
 INGORE_YAW = True  # If true, keep the current yaw
+VARY_HEIGHT = True # If true, follows path with varying height
 
 NUM_LOOPS = 0  # Number of times to loop the path
 DIM = 1.0
@@ -62,6 +63,22 @@ PATH = [
     [DIM, -DIM, HEIGHT],
     [-DIM, DIM, HEIGHT],
     [-DIM, -DIM, HEIGHT],
+    [0.0, 0.0, HEIGHT],
+]
+
+PATH_HEIGHT = [
+    [0.0, DIM, HEIGHT-0.5],
+    [0.0, DIM, HEIGHT+0.5],
+    [0.0, -DIM, HEIGHT-0.5],
+    [0.0, -DIM, HEIGHT+0.5],
+    [0.0, 0.0, HEIGHT],
+]
+
+PATH_HEIGHT_YAW = [
+    [DIM, DIM, 1.5*HEIGHT],
+    [DIM, -DIM, HEIGHT],
+    [-DIM, DIM, 0.75*HEIGHT],
+    [-DIM, -DIM, 1.25*HEIGHT],
     [0.0, 0.0, HEIGHT],
 ]
 
@@ -240,6 +257,13 @@ if __name__ == '__main__':
                 clean_exit(uav)
 
     path_squared = PATH
+
+    if VARY_HEIGHT:
+        if INGORE_YAW:
+            path_squared = PATH_HEIGHT
+        else:
+            path_squared = PATH_HEIGHT_YAW
+
     for i in range(NUM_LOOPS):
         print('Adding loop')
         path_squared += path_squared

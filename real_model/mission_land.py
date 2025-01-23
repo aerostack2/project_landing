@@ -56,7 +56,7 @@ TAKE_OFF_SPEED = 0.7  # Max speed in m/s
 SLEEP_TIME = 0.5  # Sleep time between behaviors in seconds
 
 # Fly params
-FRAME_ID='land_plane'
+FRAME_ID='coche'
 REF_FRAME_ID='earth'
 
 UPDATE_VESSEL_POSITION_RATE = 30.0  # Rate in Hz
