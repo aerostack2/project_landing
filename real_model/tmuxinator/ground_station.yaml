@@ -50,6 +50,6 @@ windows:
         - ros2 launch as2_external_object_to_tf as2_external_object_to_tf_launch.py
             namespace:=drone0
             use_sim_time:=false
-            mocap_topic:=/rigid_bodies
+            mocap_topic:=/mocap/rigid_bodies
             config_file:=config/ext_to_tf_config.yaml
 

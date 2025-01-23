@@ -46,7 +46,7 @@
       use_bypass: false
       # Differential Flatness Controller
       plugin_name: "differential_flatness_controller"
-      mass: 0.85
+      mass: 0.86
       trajectory_control:
         antiwindup_cte: 1.0
         alpha: 0.1
@@ -125,4 +125,4 @@ drone0:
   #     tgt_system: 1 # Target system ID = Instance + 1
   state_estimator:
     ros__parameters:
-      rigid_body_name: "1"
+      rigid_body_name: "33"

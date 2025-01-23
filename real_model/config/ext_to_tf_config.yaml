@@ -4,4 +4,4 @@ objects:
   - type: mocap
     rigid_bodies: 
       - rigid_body: '14'
-        frame: coche
+        frame: land_plane
