@@ -9,11 +9,11 @@ root: ./
 startup_window: platform
 windows:
   # Zenoh
-  - zenoh:
-      layout: tiled
-      panes:
-        # Zenoh
-        - zenoh-bridge-ros2dds -c zenoh_config_drone.json5
+  # - zenoh:
+  #     layout: tiled
+  #     panes:
+  #       # Zenoh
+  #       - zenoh-bridge-ros2dds -c zenoh_config_drone.json5
 
   # Platform
   - platform:
