@@ -344,7 +344,111 @@
       </visual>
     </link>
 
-        <plugin
+    <link name="left_engine_link">
+      <pose>-2.37 1.03 -0.32 0 0 1.57079</pose>
+      <inertial>
+        <mass>15.0</mass>
+        <inertia>
+          <ixx>0.4</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.25</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.25</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="left_propeller_link">
+      <pose>-2.45 1.03 -0.4 0 0 1.57079</pose>
+
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.00208</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.00333</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.00208</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name="left_engine_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>left_engine_link</child>
+    </joint>
+
+    <joint name="left_engine_propeller_joint" type="revolute">
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <friction>0.05</friction>
+          <damping>0.05</damping>
+        </dynamics>
+      </axis>
+      <parent>left_engine_link</parent>
+      <child>left_propeller_link</child>
+    </joint>
+
+    <link name="right_engine_link">
+      <pose>-2.37 -1.03 -0.32 0 0 1.57079</pose>
+      <inertial>
+        <mass>15.0</mass>
+        <inertia>
+          <ixx>0.4</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.25</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.25</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="right_propeller_link">
+      <pose>-2.45 -1.03 -0.4 0 0 1.57079</pose>
+
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.00208</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.00333</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.00208</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name="right_engine_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>right_engine_link</child>
+    </joint>
+
+    <joint name="right_engine_propeller_joint" type="revolute">
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <friction>0.05</friction>
+          <damping>0.05</damping>
+        </dynamics>
+      </axis>
+      <parent>right_engine_link</parent>
+      <child>right_propeller_link</child>
+    </joint>
+
+    <plugin
       filename="libSurface.so"
       name="maritime::Surface">
       <link_name>base_link</link_name>
@@ -380,6 +484,37 @@
       <nAbsR>0.0</nAbsR>
     </plugin>
 
+    <plugin
+      filename="gz-sim-thruster-system"
+      name="gz::sim::systems::Thruster">
+      <joint_name>left_engine_propeller_joint</joint_name>
+      <thrust_coefficient>0.004422</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+    </plugin>
+
+    <plugin
+      filename="gz-sim-thruster-system"
+      name="gz::sim::systems::Thruster">
+      <joint_name>right_engine_propeller_joint</joint_name>
+      <thrust_coefficient>0.004422</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+    </plugin>
+
+    <plugin filename="ignition-gazebo-pose-publisher-system"
+      name="ignition::gazebo::systems::PosePublisher">
+      <publish_link_pose>false</publish_link_pose>
+      <publish_collision_pose>false</publish_collision_pose>
+      <publish_visual_pose>false</publish_visual_pose>
+      <publish_nested_model_pose>true</publish_nested_model_pose>
+      <publish_model_pose>true</publish_model_pose>
+      <use_pose_vector_msg>true</use_pose_vector_msg>
+      <static_publisher>false</static_publisher>
+      <update_frequency>100</update_frequency>
+    </plugin>
 
   </model>
 </sdf>
