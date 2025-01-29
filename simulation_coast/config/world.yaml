@@ -19,8 +19,8 @@ drones:
 objects:
   - model_type: "coast_waves"
     model_name: "water"
-  - model_type: "vesselE"
-    model_name: "vessel"
+  - model_type: "boat_beacon"
+    model_name: "boat_beacon"
     xyz:
       - 17.0
       - -16.6

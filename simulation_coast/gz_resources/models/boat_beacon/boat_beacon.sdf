@@ -269,12 +269,7 @@
             <uri>model://boat_beacon/meshes/battery.dae</uri>
           </mesh>
         </geometry>
-        <material>
-          <script>
-            <name>Gazebo/DarkGrey</name>
-            <uri>__default__</uri>
-          </script>
-        </material>
+
       </visual>
       <visual name='base_link_fixed_joint_lump__right_battery_visual_visual_2'>
         <pose>0 -2.03 0 0 -0 0</pose>
@@ -284,12 +279,7 @@
             <uri>model://boat_beacon/meshes/battery.dae</uri>
           </mesh>
         </geometry>
-        <material>
-          <script>
-            <name>Gazebo/DarkGrey</name>
-            <uri>__default__</uri>
-          </script>
-        </material>
+
       </visual>
       <visual name='right_engine_link_visual'>
         <pose>-2.37378 -1.02713 0.318237 0 -0 0</pose>
@@ -353,6 +343,43 @@
         </material>
       </visual>
     </link>
+
+        <plugin
+      filename="libSurface.so"
+      name="maritime::Surface">
+      <link_name>base_link</link_name>
+      <hull_length>8</hull_length>
+      <hull_radius>1</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>4 -2 0.2</point>
+        <point>-4 -2 0.2</point>
+        <point>4 2 0.2</point>
+        <point>-4 2 0.2</point>
+      </points>
+      <wavefield>
+        <topic>/gazebo/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+
+    <plugin
+      filename="gz-sim-hydrodynamics-system"
+      name="gz::sim::systems::Hydrodynamics">
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>-510.3</xU>
+      <xAbsU>-720.4</xAbsU>
+      <yV>-400.0</yV>
+      <yAbsV>0.0</yAbsV>
+      <zW>-5000.0</zW>
+      <kP>-500.0</kP>
+      <mQ>-500.0</mQ>
+      <nR>-4000.0</nR>
+      <nAbsR>0.0</nAbsR>
+    </plugin>
+
 
   </model>
 </sdf>
