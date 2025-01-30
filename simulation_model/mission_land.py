@@ -60,18 +60,18 @@ FRAME_ID='land_plane'
 REF_FRAME_ID='earth'
 
 UPDATE_VESSEL_POSITION_RATE = 30.0  # Rate in Hz
-UPDATE_VESSEL_POSITION_THRESHOLD = 0.01  # Threshold in meters
+UPDATE_VESSEL_POSITION_THRESHOLD = 0.1  # Threshold in meters
 
 # Autonomous landing
 AP_X = 0.0  # X position in meters relative to the reference
 AP_Y = 0.0  # Y position in meters relative to the reference
 AP_Z = 1.5  # Z position in meters relative to the reference
-AP_SPEED = 0.8  # Max speed in m/s
+AP_SPEED = 1.0  # Max speed in m/s
 
 LD_X = -0.35  # X position in meters relative to the reference
 LD_Y = 0.0  # Y position in meters relative to the reference
 LD_Z = -0.065  # Z position in meters relative to the reference
-LD_SPEED = 0.8  # Max speed in m/s
+LD_SPEED = 1.0  # Max speed in m/s
 
 # Land params
 LAND_SPEED = 0.5  # Max speed in m/s
