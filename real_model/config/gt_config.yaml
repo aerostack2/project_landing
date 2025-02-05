@@ -13,6 +13,7 @@
       mocap_topic: "/mocap/rigid_bodies"
       twist_smooth_filter_cte: 0.05
       orientation_smooth_filter_cte: 0.1
+      base_frame: "/drone0/base_link"
 
 ground_station:
   # Platform
