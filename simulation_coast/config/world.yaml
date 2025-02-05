@@ -4,7 +4,7 @@ origin:
     longitude: -3.6898277
     altitude: 100.0
 drones:
-  - model_type: "quadrotor_base"
+  - model_type: "zmr250"
     model_name: "drone0"
     flight_time: 60
     xyz:
@@ -13,17 +13,18 @@ drones:
       - 5.0
     enable_velocity_control: false 
     enable_acro_control: true 
-    payload:
-      - model_type: "gps"
-        model_name: "gps"
 objects:
   - model_type: "coast_waves"
     model_name: "water"
-  - model_type: "vesselE"
-    model_name: "vessel"
+  - model_type: "boat_beacon"
+    model_name: "boat_beacon"
+    # xyz:
+    #   - 17.0
+    #   - -16.6
+    #   - 2.0
     xyz:
-      - 17.0
-      - -16.6
+      - 10.0
+      - 13.6
       - 2.0
     tf_broadcaster: true
     # object_bridges:

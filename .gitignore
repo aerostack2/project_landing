@@ -2,4 +2,6 @@
 build
 log
 install
-*/rosbags/*
+simulation_coast/rosbag/rosbags/
+simulation_model/rosbag/rosbags/
+real_model/rosbag/rosbags/

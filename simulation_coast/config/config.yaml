@@ -45,25 +45,25 @@ drone0:
   controller_manager:
     ros__parameters:
       # Differential Flatness Controller
-      mass: 1.53
+      mass: 0.862
       trajectory_control:
         antiwindup_cte: 1.0
         alpha: 0.1
         kp:
-          x: 2.0
-          y: 2.0
-          z: 2.0
+          x: 5.0
+          y: 5.0
+          z: 5.0
         ki:
-          x: 0.15
-          y: 0.15
-          z: 0.15
+          x: 0.01
+          y: 0.01
+          z: 0.05
         kd:
-          x: 1.065
-          y: 1.065
-          z: 1.065
+          x: 1.6
+          y: 1.6
+          z: 2.1
         roll_control:
-          kp: 1.85
+          kp: 6.0
         pitch_control:
-          kp: 1.85
+          kp: 6.0
         yaw_control:
-          kp: 2.85
+          kp: 1.3
