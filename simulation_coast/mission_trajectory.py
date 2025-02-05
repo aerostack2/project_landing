@@ -63,14 +63,14 @@ UPDATE_VESSEL_POSITION_RATE = 30.0  # Rate in Hz
 UPDATE_VESSEL_POSITION_THRESHOLD = 0.1  # Threshold in meters
 
 # Aproach maneuver
-AP_X = 2.0  # X position in meters relative to the reference
+AP_X = 0.8  # X position in meters relative to the reference
 AP_Y = 0.0  # Y position in meters relative to the reference
 AP_Z = 3.0  # Z position in meters relative to the reference
 AP_SPEED = 2.0  # Max speed in m/s
 AP_DISTANCE = 0.5  # Distance to goal in meters
 
 # Landing maneuver
-LD_X = 2.0  # X position in meters relative to the reference
+LD_X = 0.8  # X position in meters relative to the reference
 LD_Y = 0.0  # Y position in meters relative to the reference
 LD_Z = 1.4  # Z position in meters relative to the reference
 LD_SPEED_XY = 1.0  # Max speed in m/s in xy plane
