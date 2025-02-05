@@ -53,9 +53,9 @@
         antiwindup_cte: 1.0
         alpha: 0.1
         kp:
-          x: 5.0
-          y: 5.0
-          z: 5.0
+          x: 3.5
+          y: 3.5
+          z: 4.0
         ki:
           x: 0.01
           y: 0.01
@@ -74,11 +74,14 @@
   # State Estimator
   state_estimator:
     ros__parameters:
-      # Motion Capture
-      plugin_name: "mocap_pose"
-      mocap_topic: "/mocap/rigid_bodies"
-      twist_smooth_filter_cte: 0.05
-      orientation_smooth_filter_cte: 0.1
+      # # Motion Capture
+      # plugin_name: "mocap_pose"
+      # mocap_topic: "/mocap/rigid_bodies"
+      # twist_smooth_filter_cte: 0.05
+      # orientation_smooth_filter_cte: 0.1
+
+      # Ground Truth
+      plugin_name: "ground_truth"
 
   # Behaviors Motion
   TakeoffBehavior:
@@ -118,13 +121,13 @@
         pitch: 0.0 # Rotation around y (rad)
         yaw: -1.57079632679 # Rotation around z (rad)
 
-drone0:
-  # Platform
-  # mavros/mavros_node:
-  #   ros__parameters:
-  #     fcu_url: "/dev/ttyACM0:57600" # Autopilot address for connection
-  #     #fcu_url: "/dev/ttyUSB0:115200" # Autopilot address for connection
-  #     tgt_system: 1 # Target system ID = Instance + 1
-  state_estimator:
-    ros__parameters:
-      rigid_body_name: "33"
+# drone0:
+#   # Platform
+#   # mavros/mavros_node:
+#   #   ros__parameters:
+#   #     fcu_url: "/dev/ttyACM0:57600" # Autopilot address for connection
+#   #     #fcu_url: "/dev/ttyUSB0:115200" # Autopilot address for connection
+#   #     tgt_system: 1 # Target system ID = Instance + 1
+#   state_estimator:
+#     ros__parameters:
+#       rigid_body_name: "33"

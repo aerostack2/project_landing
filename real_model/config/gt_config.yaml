@@ -1,0 +1,26 @@
+/**:
+  # Global Parameters
+  ros__parameters:
+    tf_timeout_threshold: 0.0
+
+/**:
+  # Basic Robotics Functions
+  # State Estimator
+  state_estimator:
+    ros__parameters:
+      # # Motion Capture
+      plugin_name: "mocap_pose"
+      mocap_topic: "/mocap/rigid_bodies"
+      twist_smooth_filter_cte: 0.05
+      orientation_smooth_filter_cte: 0.1
+
+ground_station:
+  # Platform
+  # mavros/mavros_node:
+  #   ros__parameters:
+  #     fcu_url: "/dev/ttyACM0:57600" # Autopilot address for connection
+  #     #fcu_url: "/dev/ttyUSB0:115200" # Autopilot address for connection
+  #     tgt_system: 1 # Target system ID = Instance + 1
+  state_estimator:
+    ros__parameters:
+      rigid_body_name: "1"
