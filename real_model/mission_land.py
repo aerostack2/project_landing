@@ -68,7 +68,7 @@ AP_Y = 0.0  # Y position in meters relative to the reference
 AP_Z = 1.5  # Z position in meters relative to the reference
 AP_SPEED = 0.8  # Max speed in m/s
 
-LD_X = 0.35  # X position in meters relative to the reference
+LD_X = 0.45  # X position in meters relative to the reference
 LD_Y = 0.0  # Y position in meters relative to the reference
 LD_Z = -0.065  # Z position in meters relative to the reference
 LD_SPEED = 0.8  # Max speed in m/s
@@ -301,21 +301,9 @@ def drone_run(drone_interface: DroneInterface) -> bool:
     land_pose.pose.position.y = LD_Y
     land_pose.pose.position.z = LD_Z
     
-    # # Path
-    # path = [approach_pose, land_pose]
-    # success = drone_interface.send_trajectory_generation(path, LD_SPEED)
-    # if not success:
-    #     print('Approach Land failed')
-    #     return success
-    
-    # sleep(SLEEP_TIME)
-    # while drone_interface.trajectory_generation.status == BehaviorStatus.RUNNING:
-    #     drone_interface.update_vessel_position()
-    #     sleep(0.1)
-    
-    # Approach
-    path = [approach_pose]
-    success = drone_interface.send_trajectory_generation(path, AP_SPEED)
+    # Path
+    path = [approach_pose, land_pose]
+    success = drone_interface.send_trajectory_generation(path, LD_SPEED)
     if not success:
         print('Approach Land failed')
         return success
@@ -324,18 +312,30 @@ def drone_run(drone_interface: DroneInterface) -> bool:
     while drone_interface.trajectory_generation.status == BehaviorStatus.RUNNING:
         drone_interface.update_vessel_position()
         sleep(0.1)
-        
-    # Land
-    path = [land_pose]
-    success = drone_interface.send_trajectory_generation(path, LD_SPEED)
-    if not success:
-        print('Land failed')
-        return success
     
-    sleep(SLEEP_TIME)
-    while drone_interface.trajectory_generation.status == BehaviorStatus.RUNNING:
-        drone_interface.update_vessel_position()
-        sleep(0.1)
+    # # Approach
+    # path = [approach_pose]
+    # success = drone_interface.send_trajectory_generation(path, AP_SPEED)
+    # if not success:
+    #     print('Approach Land failed')
+    #     return success
+    
+    # sleep(SLEEP_TIME)
+    # while drone_interface.trajectory_generation.status == BehaviorStatus.RUNNING:
+    #     drone_interface.update_vessel_position()
+    #     sleep(0.1)
+        
+    # # Land
+    # path = [land_pose]
+    # success = drone_interface.send_trajectory_generation(path, LD_SPEED)
+    # if not success:
+    #     print('Land failed')
+    #     return success
+    
+    # sleep(SLEEP_TIME)
+    # while drone_interface.trajectory_generation.status == BehaviorStatus.RUNNING:
+    #     drone_interface.update_vessel_position()
+    #     sleep(0.1)
         
     print("Dynamics Land success")
     return True

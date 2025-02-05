@@ -60,7 +60,7 @@ FRAME_ID='land_plane'
 REF_FRAME_ID='earth'
 
 UPDATE_VESSEL_POSITION_RATE = 30.0  # Rate in Hz
-UPDATE_VESSEL_POSITION_THRESHOLD = 0.1  # Threshold in meters
+UPDATE_VESSEL_POSITION_THRESHOLD = 0.3  # Threshold in meters
 
 # Autonomous landing
 AP_X = 0.0  # X position in meters relative to the reference
