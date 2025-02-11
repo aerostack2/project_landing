@@ -65,7 +65,7 @@ if __name__ == "__main__":
     # Open rosbag to read data
     RESOURCES_PATH = Path('/home/keikei/project_landing/real_model/rosbag/rosbags/')
 
-    rosbag = 'landing/rosbag2_2025_01_29-19_12_02/rosbag2_2025_01_29-19_12_02_0.db3'
+    rosbag = 'landing/rosbag2_2025_02_05-20_14_25/rosbag2_2025_02_05-20_14_25_0.db3'
 
     bag_path = str(RESOURCES_PATH / rosbag)
 
@@ -107,12 +107,18 @@ if __name__ == "__main__":
             pose_y.append(msg.pose.position.y)
             pose_z.append(msg.pose.position.z)
         elif topic == '/drone0/motion_reference/trajectory':
-            trajectory_x.append(-(msg.setpoints[0].position.y ) - 0.62)
-            trajectory_y.append((msg.setpoints[0].position.x) + 3.32)
-            trajectory_z.append((msg.setpoints[0].position.z) + 0.11)
+            # trajectory_x.append(-(msg.setpoints[0].position.y ) - 0.62)
+            # trajectory_y.append((msg.setpoints[0].position.x) + 3.32)
+            # trajectory_z.append((msg.setpoints[0].position.z) + 0.11)
+            trajectory_x.append((msg.setpoints[0].position.x ) - 0.52)
+            trajectory_y.append((msg.setpoints[0].position.y) + 3.6)
+            trajectory_z.append((msg.setpoints[0].position.z) + 0.15)
         elif topic == '/drone0/debug/traj_generated':
-                pose_x_coche.append(-(msg.poses[-1].pose.position.y) - 0.62 + 0.05)
-                pose_y_coche.append((msg.poses[-1].pose.position.x) + 3.32 + 0.05)
+                # pose_x_coche.append(-(msg.poses[-1].pose.position.y) - 0.62 + 0.05)
+                # pose_y_coche.append((msg.poses[-1].pose.position.x) + 3.32 + 0.05)
+                # pose_z_coche.append(0.5 + 0.11)
+                pose_x_coche.append((msg.poses[-1].pose.position.x) - 0.52 + 0.05)
+                pose_y_coche.append((msg.poses[-1].pose.position.y) + 3.6 + 0.05)
                 pose_z_coche.append(0.5 + 0.11)
 
     # trim trajectory

@@ -39,6 +39,12 @@ while getopts "vtrs" opt; do
   esac
 done
 
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:/home/keikei/project_landing/simulation_model/gz_resources/worlds
+export GZ_SIM_RESOURCE_PATH=:$GZ_SIM_RESOURCE_PATH:/home/keikei/project_landing/simulation_model/gz_resources/models
+export GZ_SIM_SYSTEM_PLUGIN_PATH=/home/keikei/project_landing/simulation_model/gz_resources/plugin_ws/install/plugin/lib:$GZ_SIM_SYSTEM_PLUGIN_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/keikei/project_landing/simulation_model/gz_resources/plugin_ws/install/lib
+export AS2_EXTRA_DRONE_MODELS=$AS2_EXTRA_DRONE_MODELS:zmr250
+
 # Launch aerostack2 ground station
 eval "tmuxinator start -n ground_station -p tmuxinator/ground_station.yaml \
   keyboard_teleoperation=${keyboard_teleoperation} \
