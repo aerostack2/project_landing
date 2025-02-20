@@ -28,12 +28,12 @@
         min : -360.0  # Min yaw rate to send to platform (deg/s) # ATTENTION: this is in deg/s
       use_thrust_map: true # Flag to use thrust map
       thrust_map:
-        a: 2891.7649649665987
-        b: 115.68304893912368
-        c: -136.6433473374485
-        d: -2.7940080155124005
-        e: -0.7629228407317176
-        f: 2.4731771341179454
+        a: -1769.3480036499736
+        b: 222.44476103204255
+        c: 239.37152766217667
+        d: -3.506179846097005
+        e: -4.984424633091574
+        f: -5.0140325087477775
 
       limit_output: true  # Flag to limit the output of the platform
       limit_roll_percent: 1.0  # Limit of roll command in percent (between 0 and 1)
