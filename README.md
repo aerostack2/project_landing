@@ -10,7 +10,7 @@ cd gz_resources/plugin_ws
 colcon build --merge-install
 ```
 
-### Follow reference landing
+<!-- ### Follow reference landing
 
 Launch aerostack2 onboard nodes
 
@@ -28,7 +28,7 @@ Launch mission in the aerostack2
 
 ```
 python3 mission_follow_ref.py
-```
+``` -->
 
 ### Trajectory generation landing
 
