@@ -70,6 +70,16 @@
           kp: 6.0
         yaw_control:
           kp: 1.3
+      # MPC Controller
+      # plugin_name: "mpc"
+      mpc:
+        Q: [5.0, 5.0, 10.0, 0.1, 0.1, 20.0, 0.1, 0.1, 0.1] # Weight for internal states: [x, y, z, roll, pitch, yaw, vx, vy, vz]
+        Qe: [5.0, 5.0, 10.0, 0.1, 0.1, 20.0, 0.1, 0.1, 0.1] # Weight for end states: [x, y, z, roll, pitch, yaw, vx, vy, vz]
+        R: [0.8, 1.0, 1.0, 0.5] # Weight for control inputs: [thrust, wx, wy, wz]
+        lbu: [0.0, -1.0, -1.0, -1.0] # Lower bounds for control inputs: [thrust, wx, wy, wz]
+        ubu: [30.0, 1.0, 1.0, 1.0] # Upper bounds for control inputs: [thrust, wx, wy, wz]
+        p: [0.862, 1.0, 0.0, 0.0, 0.0] # Online parameter: [mass, qw_ref, qx_ref, qy_ref, qz_ref]
+
 
   # State Estimator
   state_estimator:

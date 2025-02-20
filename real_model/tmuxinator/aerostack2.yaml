@@ -35,10 +35,10 @@ windows:
         - ros2 launch as2_state_estimator mocap_pose_state_estimator.launch.py
               namespace:=drone0
               config_file:=config/config.yaml
-        # Motion Controller with Differential Flatness
-        - ros2 launch as2_motion_controller controller_launch.py
-            namespace:=drone0
-            config_file:=config/config.yaml
+        # # Motion Controller with Differential Flatness
+        # - ros2 launch as2_motion_controller controller_launch.py namespace:=drone0 config_file:=config/config.yaml
+        # Motion Controller with MPC
+        - ros2 launch as2_mpc mpc.launch.py namespace:=drone0 config_file:=config/config.yaml
 
   # Behaviors
   - behaviors:
