@@ -13,7 +13,8 @@
       device: "/dev/ttyTHS1"  # Serial port to connect to the Platform
       baudrate: 115200 # Baudrate of the serial port
       imu_hz: 0.00625
-      battery_hz: 0.2
+      battery_hz: 0.02
+      motors_hz: 0.01
       thrust:
         max : 44.0  # Max thrust to send to platform (N)
         min : 0.15  # Min thrust to send to platform (N)
@@ -48,7 +49,7 @@
       use_bypass: false
       # Differential Flatness Controller
       plugin_name: "differential_flatness_controller"
-      mass: 0.862
+      mass: 0.853
       trajectory_control:
         antiwindup_cte: 1.0
         alpha: 0.1
