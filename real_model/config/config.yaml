@@ -12,9 +12,16 @@
       info_freq: 10.0  # Hz of platform info publish
       device: "/dev/ttyTHS1"  # Serial port to connect to the Platform
       baudrate: 115200 # Baudrate of the serial port
-      imu_hz: 0.00625
+      imu: 
+        frequency: 0.00625
+        covariance:
+          gyro: 0.005
+          accel: 0.0004
+          orientation: 99999.9
       battery_hz: 0.02
-      motors_hz: 0.01
+      altitude_hz: 0.0
+      rc_hz: 0.0
+      motor_hz: 0.01
       thrust:
         max : 44.0  # Max thrust to send to platform (N)
         min : 0.15  # Min thrust to send to platform (N)
