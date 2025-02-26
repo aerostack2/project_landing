@@ -63,13 +63,13 @@ windows:
             config_file:=config/ext_to_tf_config.yaml
 
   # Mission monitoring
-  # - hardware:
-  #     layout:
-  #     panes:
-  #       - ros2 launch as2_usb_camera_interface as2_usb_camera_interface_launch.py
-  #           namespace:=drone0
-  #           config_file:=config/config.yaml
-  #           camera_calibration_file:=config/camera_calibration.yaml
+  - hardware:
+      layout:
+      panes:
+        - ros2 launch as2_usb_camera_interface as2_usb_camera_interface_launch.py
+            namespace:=drone0
+            config_file:=config/config.yaml
+            camera_calibration_file:=config/camera_calibration.yaml
 
   <%- if rosbag %>
   # ROSbag recording
