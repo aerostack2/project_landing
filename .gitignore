@@ -6,3 +6,4 @@ simulation_coast/rosbag/rosbags/
 simulation_model/rosbag/rosbags/
 real_model/rosbag/rosbags/
 scripts
+*.zip
