@@ -18,10 +18,10 @@
           gyro: 0.005
           accel: 0.0004
           orientation: 99999.9
-      battery_hz: 0.02
+      battery_hz: 0.2
       altitude_hz: 0.0
       rc_hz: 0.0
-      motor_hz: 0.01
+      motor_hz: 0.02
       thrust:
         max : 44.0  # Max thrust to send to platform (N)
         min : 0.15  # Min thrust to send to platform (N)

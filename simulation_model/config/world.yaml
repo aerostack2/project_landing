@@ -4,16 +4,16 @@ drones:
     model_name: "drone0"
     flight_time: 60
     xyz:
-      - -1.0
-      - 2.0
-      - 0.1
+     - -1.0
+     - 2.0
+     - 0.1
     enable_velocity_control: false 
     enable_acro_control: true
 objects:
-  - model_type: "land_plane"
-    model_name: "land_plane"
-    xyz:
-      - 3.0
-      - 2.2
-      - 0.5
-    tf_broadcaster: true
+ - model_type: "land_plane"
+   model_name: "land_plane"
+   xyz:
+     - 3.0
+     - 2.2
+     - 0.5
+   tf_broadcaster: true
