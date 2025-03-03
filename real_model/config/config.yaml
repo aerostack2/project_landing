@@ -35,6 +35,8 @@
         max : 360.0  # Max yaw rate to send to platform (deg/s) # ATTENTION: this is in deg/s
         min : -360.0  # Min yaw rate to send to platform (deg/s) # ATTENTION: this is in deg/s
       use_thrust_map: true # Flag to use thrust map
+      # 2ND DEGREE THRUST MAP WITH VOLTAGE FIX
+      voltage_fix: 0.8422
       thrust_map:
         a: -1769.3480036499736
         b: 222.44476103204255
@@ -42,6 +44,20 @@
         d: -3.506179846097005
         e: -4.984424633091574
         f: -5.0140325087477775
+
+      # 3RD DEGREE THRUST MAP WITH VOLTAGE FIX
+      # voltage_fix: 0.8725
+      # thrust_map:
+      #   a: -69420.98291500256
+      #   b: 1215.8536984359887
+      #   c: 8837.820971205549
+      #   d: -11.01033144420466
+      #   e: -88.67294494631183
+      #   f: -369.023485310118
+      #   g: 0.24747534334436733
+      #   h: 0.215586796748973
+      #   i: 1.7446141226755494
+      #   j: 5.138515883834511
 
       limit_output: true  # Flag to limit the output of the platform
       limit_roll_percent: 1.0  # Limit of roll command in percent (between 0 and 1)
