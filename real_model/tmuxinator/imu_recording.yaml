@@ -1,0 +1,18 @@
+<%
+# Input parameters
+rosbag = @settings["rosbag"] == "true"
+%>
+
+name: drone0
+attach: true
+root: ./
+startup_window: platform
+windows:
+  # Platform
+  - platform:
+      layout: tiled
+      panes:
+        - ros2 launch as2_platform_betaflight as2_platform_betaflight_launch.py
+            namespace:=drone0
+            platform_config_file:=config/config.yaml
+        - sleep 1; ros2 bag record -o imu_data_recording /drone0/sensor_measurements/imu /drone0/raw_imu

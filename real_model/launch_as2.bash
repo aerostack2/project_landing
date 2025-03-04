@@ -29,5 +29,5 @@ while getopts "r" opt; do
   esac
 done
 
-eval "tmuxinator start -n drone -p tmuxinator/aerostack2.yaml \
+eval "tmuxinator start -n drone -p tmuxinator/imu_recording.yaml \
   rosbag=${rosbag}"
